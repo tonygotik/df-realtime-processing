@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Apps/MessageInboundHandler/Properties
+/Apps/Integrations/ADFIntegrationApps/Properties
+/Apps/Azure.Services/Azure.Services.DataLake.Storage/obj
+/Apps/Azure.Services/PMSPro.Services.ServiceBus/obj
+/Apps/Azure.Services/Azure.Services.ServiceBus
+/Apps/Azure.Services/Azure.Services.EventHubs/bin/Debug/net6.0
+/Apps/Azure.Services/Azure.Services.EventHubs/obj
