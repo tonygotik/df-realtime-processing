@@ -7,17 +7,17 @@ using MessageInboundHandler.Applications.Masters.Commands;
 
 namespace MessageInboundHandler;
 
-public class MasterMessageHandler
+public class PaymentMessageHandler
 {
     private readonly IMediator _mediator;
-    public MasterMessageHandler(IMediator mediator)
+    public PaymentMessageHandler(IMediator mediator)
     {
         _mediator = mediator;
     }
 
-    [FunctionName("MasterMessageInbound")]
-    public async Task MasterMessageInbound(
-        [ServiceBusTrigger("%MasterServiceBusTopic%", "subtopic", Connection = "ServiceBusConnectionString")]
+    [FunctionName("PaymentInbound")]
+    public async Task PaymentInbound(
+        [ServiceBusTrigger("%MasterServiceBusTopic%", "payments", Connection = "ServiceBusConnectionString")]
         string message,
         ExecutionContext executionContext,
         ILogger logger)

@@ -16,6 +16,7 @@ public static class EventHubExtensions
     private static void AddEventHubSettings(this IServiceCollection services)
     {
         var endpoint = GetEventHubEndpoint();
+        var connection = GetEventHubConnection();
         var retryNumber = Environment.GetEnvironmentVariable("EventHubRetryNumber") ?? throw new ArgumentNullException(null, "EventHubRetryNumber");
         var retryTimeout = Environment.GetEnvironmentVariable("EventHubRetryTimeoutSecond") ?? throw new ArgumentNullException(null, "EventHubRetryTimeoutSecond");
 
@@ -24,6 +25,7 @@ public static class EventHubExtensions
             settings.EndPoint = endpoint;
             settings.RetryNumber = int.Parse(retryNumber);
             settings.RetryTimeoutSecond = int.Parse(retryTimeout);
+            settings.EventHubConnection = connection;
         });
     }
 
@@ -42,5 +44,17 @@ public static class EventHubExtensions
         }
 
         return endpoint;
+    }
+
+    private static string GetEventHubConnection()
+    {
+        var connection = Environment.GetEnvironmentVariable("EventHubConnection");
+
+        if (string.IsNullOrEmpty(connection))
+        {
+            throw new ArgumentNullException(null, "Missing the connection configuration for event hub!");
+        }
+
+        return connection;
     }
 }

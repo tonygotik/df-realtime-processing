@@ -7,4 +7,6 @@ public class EventHubSettings
     public int RetryNumber { get; set; }
 
     public int RetryTimeoutSecond { get; set; }
+
+    public string EventHubConnection { get; set; } = string.Empty;
 }

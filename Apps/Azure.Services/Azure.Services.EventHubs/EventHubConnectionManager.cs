@@ -22,9 +22,24 @@ public class EventHubConnectionManager : IEventHubConnectionManager
             {
                 MaximumRetries = _options.RetryNumber,
                 TryTimeout = TimeSpan.FromSeconds(_options.RetryTimeoutSecond),
-            }
+            },
+            
         };
 
         return new EventHubProducerClient(_options.EndPoint, producerOptions);
+    }
+
+    public EventHubProducerClient CreateEventHubClient(string hubName)
+    {
+        var producerOptions = new EventHubProducerClientOptions
+        {
+            RetryOptions = new EventHubsRetryOptions
+            {
+                MaximumRetries = _options.RetryNumber,
+                TryTimeout = TimeSpan.FromSeconds(_options.RetryTimeoutSecond),
+            }
+        };
+
+        return new EventHubProducerClient(_options.EventHubConnection, hubName, producerOptions);
     }
 }

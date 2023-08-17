@@ -5,4 +5,5 @@ namespace Azure.Services.EventHubs;
 public interface IEventHubConnectionManager
 {
     EventHubProducerClient CreateEventHubClient();
+    EventHubProducerClient CreateEventHubClient(string hubName);
 }
